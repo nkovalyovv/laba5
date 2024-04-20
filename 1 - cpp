@@ -1,0 +1,19 @@
+#include "iostream" 
+#include "Header.h" 
+#include "Windows.h" 
+using namespace std; 
+int main() { 
+ SetConsoleOutputCP(1251); 
+ SetConsoleCP(1251); 
+ int numfilm; 
+ cout « "Enter mnumber of films in the library: "; 
+ cin » numfilm; 
+ while (!cin || cin.peek() != '\n' || numfilm < 1) { 
+  clean(); 
+  cin » numfilm; 
+ } 
+ Films(film, numfilm); 
+ FilmbyCost(film, numfilm); 
+ cout « endl; 
+ print_vec(film, numfilm); 
+}
