@@ -1,0 +1,57 @@
+#include "Header.h" 
+#include <iostream> 
+vector<Film> film; 
+using namespace std; 
+ 
+void Films(vector<Film>& film, int num) { 
+ for (int i = 0; i < num; i++) { 
+  Film films; 
+  cout « "Enter film title: "; 
+  cin.get(); 
+  getline(cin, films.title); 
+  cout « "Enter film cost: "; 
+  cin » films.cost; 
+  while (!cin || cin.peek() != '\n' || films.cost < 0) { 
+   clean(); 
+   cin » films.cost; 
+  } 
+  cout « "Enter film director: "; 
+  cin.clear(); 
+  cin.ignore((numeric_limits<streamsize>::max)(), '\n'); 
+  getline(cin, films.director); 
+  film.push_back(films); 
+ } 
+ 
+} 
+ 
+void FilmbyCost(vector<Film>& film, int num) { 
+ Film tmp; 
+ for (int i = 0; i < num - 1; ++i) { 
+  for (int j = 0; j < num - 1; ++j) { 
+   if (film[j + 1].cost < film[j].cost) { 
+    tmp = film[j + 1]; 
+    film[j + 1] = film[j]; 
+    film[j] = tmp; 
+   } 
+  } 
+ } 
+} 
+ 
+void print_struc(Film tem) { 
+ cout « setw(21) « left « "Title" « tem.title « endl; 
+ cout « setw(21) « left « "Cost" « tem.cost « endl; 
+ cout « setw(21) « left « "Director" « tem.director « endl; 
+} 
+ 
+void print_vec(vector<Film>film, int num) { 
+ for (int i = 0; i < num; i++) { 
+  print_struc(film[i]); 
+  cout « endl; 
+ } 
+} 
+ 
+void clean() { 
+ cin.clear(); 
+ cin.ignore((numeric_limits<streamsize>::max)(), '\n'); 
+ cout « "Error!" « endl; 
+}
